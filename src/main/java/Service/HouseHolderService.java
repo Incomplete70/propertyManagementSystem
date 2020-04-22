@@ -19,7 +19,6 @@ public class HouseHolderService {
             houseHolderDao.addHouseHolder(houseHolder);
             System.out.println("HouseHolderService:添加成功");
             return true;
-
         }
     }
 
