@@ -6,6 +6,7 @@ JDBCUtils:JDBC工具类 数据库相关
 Dao:与数据库交互底层
 Entity:实体
 Service:处理Dao层
+
 ###Servlet:与前端交互 改页面同时注意改这里###
 
 webapp文件夹:
