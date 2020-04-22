@@ -24,15 +24,12 @@ public class AddHouseHolderServlet extends HttpServlet {
         response.setHeader("Content-type", "text/html;charset=UTF-8");
         response.setCharacterEncoding("utf-8");
 
-        System.out.println("doget调用");
-
+        //前端拿值 改页面注意改这里 Parameter匹配
         int houseHolderNumber = Integer.parseInt(request.getParameter("houseHolderNumber"));
         String houseHolderName = request.getParameter("houseHolderName");
         int houseHolderId = Integer.parseInt(request.getParameter("houseHolderId"));
 
-
         HouseHolder houseHolder = new HouseHolder(houseHolderNumber,houseHolderName,houseHolderId);
-
         HouseHolderService houseHolderService = new HouseHolderService();
         boolean result = houseHolderService.addHouseHolder(houseHolder);
         PrintWriter out = response.getWriter();

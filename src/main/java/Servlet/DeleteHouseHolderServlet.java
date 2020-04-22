@@ -22,8 +22,11 @@ public class DeleteHouseHolderServlet extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         //接收前端传来的户号
         int houseHolderNumber = Integer.parseInt(request.getParameter("houseHolderNumber"));
+
         HouseHolderService houseHolderService = new HouseHolderService();
+
         boolean result = houseHolderService.deleteHouseHolderByNumber(houseHolderNumber);
+        //处理结果
         if(result){
             response.getWriter().print("删除成功");
             response.sendRedirect("QueryAllHouseHoldersServlet");//删除完之后再查询一次,查询后会再跳到queryResult.jsp

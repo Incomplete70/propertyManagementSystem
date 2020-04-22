@@ -22,13 +22,13 @@ public class QueryAllHouseHoldersServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("utf-8");
-
+        //
         HouseHolderService houseHolderService = new HouseHolderService();
         List<HouseHolder> houseHolders = houseHolderService.queryAllHouseHolders();
-        System.out.println(houseHolders);
+
         request.setAttribute("houseHolders", houseHolders);
         //因为request域中有数据,因此需要通过请求转发的方式跳转(重定向会丢失request域)
         //pageContext<request<session<application
-        request.getRequestDispatcher("queryResult.jsp").forward(request,response);
+        //request.getRequestDispatcher("queryResult.jsp").forward(request,response);
     }
 }
