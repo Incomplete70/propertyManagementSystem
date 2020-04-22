@@ -12,3 +12,10 @@ webapp文件夹:这里放主页和管理页面
 login.jsp:登录页面  
 在web.xml里配置进入的第一个页面  
 
+数据库:  
+propertymanagementsystem库:    
+householder 户主表:houseHolderNumber houseHolderName houseHolderId waterBalance electricityBalance checkInDate  
+account 账号表:uname upwd accountRights  
+暂定
+
+
