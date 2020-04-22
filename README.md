@@ -2,12 +2,14 @@
 小区物业管理系统
 
 Java文件夹:
-JDBCUtils:JDBC工具类 数据库相关
 Dao:与数据库交互底层
 Entity:实体
 Service:处理Dao层
 
 ###Servlet:与前端交互 改页面同时注意改这里###
+
+JDBCUtils:JDBC工具类 数据库相关配置
+部署时注意修改JDBCUtils的第23行 数据库名,账号,密码
 
 webapp文件夹:
 这里放主页和管理页面
