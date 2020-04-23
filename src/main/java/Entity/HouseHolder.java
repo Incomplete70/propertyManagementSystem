@@ -1,15 +1,15 @@
-package java.Entity;
+package Entity;
 /*
 * 户主实体类
 *
 * */
 public class HouseHolder {
-   int houseHolderNumber;       //户号
-   String houseHoldername;      //户主名
-   int houseHolderId;           //户主身份证号
+   private int houseHolderNumber;       //户号
+   private String houseHoldername;      //户主名
+   private int houseHolderId;           //户主身份证号
 
-   double waterBalance;         //水费余额
-   double electricityBalance;   //电费余额
+   private double waterBalance;         //水费余额
+   private double electricityBalance;   //电费余额
    //Date date = ; //入住日期 先不做
 
 

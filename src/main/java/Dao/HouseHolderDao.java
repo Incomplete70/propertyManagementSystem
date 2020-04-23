@@ -1,7 +1,7 @@
-package java.Dao;
+package Dao;
 
 
-import java.Entity.HouseHolder;
+import Entity.HouseHolder;
 import java.JDBCUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +18,6 @@ public class HouseHolderDao {
     public boolean addHouseHolder(HouseHolder houseHolder){
         Connection connection= null;
         PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
         try {
             connection = JDBCUtils.getConncetion();
 
@@ -44,7 +43,6 @@ public class HouseHolderDao {
     public boolean deleteHouseHolderByNumber(int number){
         Connection connection= null;
         PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
         try {
             connection = JDBCUtils.getConncetion();
 
@@ -70,11 +68,10 @@ public class HouseHolderDao {
     public boolean updateHouseHolderByNumber(int number, HouseHolder houseHolder){
         Connection connection= null;
         PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
         try {
             connection = JDBCUtils.getConncetion();
 
-            String sql = "update householders set  houseHolderNumber= ? , houseHolderName = ? , houseHolderId= ? where houseHolderNumber = ?";
+            String sql = "update householders set houseHolderNumber= ? , houseHolderName = ? , houseHolderId= ? where houseHolderNumber = ?";
             preparedStatement = connection.prepareStatement(sql);
             //修改后的内容
             preparedStatement.setInt(1, houseHolder.getHouseHolderNumber());
@@ -146,7 +143,7 @@ public class HouseHolderDao {
     }
 
     //根据姓名查询
-    //根据年龄查询
+    //根据身份证查询
 
     //根据户号 查询户主
     public HouseHolder queryHouseHolderByNumber(int number){

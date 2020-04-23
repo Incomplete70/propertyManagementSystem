@@ -1,7 +1,7 @@
-package java.Service;
+package Service;
 
-import java.Dao.HouseHolderDao;
-import java.Entity.HouseHolder;
+import Dao.HouseHolderDao;
+import Entity.HouseHolder;
 
 import java.util.List;
 

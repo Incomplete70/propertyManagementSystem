@@ -1,14 +1,16 @@
-package java.Servlet;
+package Servlet;
+
+import Service.HouseHolderService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.Service.HouseHolderService;
+import Service.HouseHolderService;
 import java.io.IOException;
 
-import java.Entity.HouseHolder;
+import Entity.HouseHolder;
 //根据户号查询户主
 @WebServlet(name = "QueryHouseHolderByNumberServlet",urlPatterns = "/QueryHouseHolderByNumberServlet")
 public class QueryHouseHolderByNumberServlet extends HttpServlet {

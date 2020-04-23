@@ -1,7 +1,7 @@
-package java.Servlet;
+package Servlet;
 
-import java.Entity.HouseHolder;
-import java.Service.HouseHolderService;
+import Entity.HouseHolder;
+import Service.HouseHolderService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
