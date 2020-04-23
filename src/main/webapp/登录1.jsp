@@ -9,8 +9,8 @@
 <html >
 <head>
     <meta charset="UTF-8" />
-    <link href="css/注册.css" type="text/css" rel="stylesheet" />
-    <title>小区管路系统登录界面</title>
+    <link href="登录.css" type="text/css" rel="stylesheet" />
+    <title>小区管理系统登录界面</title>
 
 </head>
 <body>
