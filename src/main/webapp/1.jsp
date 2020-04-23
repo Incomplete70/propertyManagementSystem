@@ -1,5 +1,11 @@
-<!DOCTYPE html>
-<!--CSS和HTML分开写 git:蓝色箭头是从服务器上面更新项目 拉  绿色是把本地的推上去-->
+<%--
+  Created by IntelliJ IDEA.
+  User: Administrator
+  Date: 2020/4/23 0023
+  Time: 12:54
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html >
 <head>
     <meta charset="UTF-8" />
@@ -17,7 +23,7 @@
 
         用户名：<input class="yh" name="usename" type="text" id="UsernName1" size="13">
         <br /><br />
-        密 &nbsp;&nbsp;&nbsp;码：<input class="yh" name="pwd" type="password" id=   "pas1"  size="13">
+        密 &nbsp;&nbsp;&nbsp;码：<input class="yh" name="pwd" type="password" id="pas1"  size="13">
 
         <br /><br /><br />
 
@@ -33,23 +39,3 @@
 
 </div>
 </body>
-<script type="text/javascript">
-    window.onload=function(){
-        var submit=document.getElementById("submit");
-        var kong="";
-        submit.onclick=function(){
-            // var reg=/^[0-9]{11}$/;
-            var usename=document.getElementById("UsernName1").value;
-            var pas1=document.getElementById("pas1").value;
-            if(usename==kong){
-                alert("未输入账号");
-            }
-            if(pas1==kong){
-                alert("未输入密码");
-            }
-
-
-        };
-    };
-</script>
-</html>
