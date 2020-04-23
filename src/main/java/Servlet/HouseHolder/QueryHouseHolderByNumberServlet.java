@@ -1,4 +1,4 @@
-package Servlet;
+package Servlet.HouseHolder;
 
 import Service.HouseHolderService;
 
@@ -10,30 +10,34 @@ import javax.servlet.http.HttpServletResponse;
 import Service.HouseHolderService;
 import java.io.IOException;
 
-@WebServlet(name = "DeleteHouseHolderServlet" ,urlPatterns = "/DeleteHouseHolderServlet")
-public class DeleteHouseHolderServlet extends HttpServlet {
-
+import Entity.HouseHolder;
+//根据户号查询户主
+@WebServlet(name = "QueryHouseHolderByNumberServlet",urlPatterns = "/QueryHouseHolderByNumberServlet")
+public class QueryHouseHolderByNumberServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
-    //根据学号删除
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //编码
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("utf-8");
-        //接收前端传来的户号
+
+        //前端拿值 改页面注意改这里 Parameter匹配
         int houseHolderNumber = Integer.parseInt(request.getParameter("houseHolderNumber"));
 
         HouseHolderService houseHolderService = new HouseHolderService();
+        HouseHolder houseHolder = houseHolderService.queryHouseHolderByNumber(houseHolderNumber);
 
-        boolean result = houseHolderService.deleteHouseHolderByNumber(houseHolderNumber);
-        //处理结果
-        if(result){
-            response.getWriter().print("删除成功");
-            response.sendRedirect("QueryAllHouseHoldersServlet");//删除完之后再查询一次,查询后会再跳到queryResult.jsp
-        }else {
-            response.getWriter().print("删除失败!");
-        }
+
+        //将此人的数据打印到页面显示
+        //response.getWriter().print(houseHolder);
+
+        request.setAttribute("houseHolder", houseHolder); //把查询到的户主信息 放到request域里面
+
+        //request.getRequestDispatcher("studentInfo.jsp").forward(request,response);//请求转发跳转
+
+
     }
 }

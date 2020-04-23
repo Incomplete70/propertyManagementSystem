@@ -1,4 +1,4 @@
-package Servlet;
+package Servlet.HouseHolder;
 
 import Entity.HouseHolder;
 import Service.HouseHolderService;
