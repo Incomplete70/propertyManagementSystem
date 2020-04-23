@@ -13,6 +13,7 @@ public class AccountDao {
     public boolean addAccount(Account account) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
+        boolean result = false;
         try {
             connection = JDBCUtils.getConncetion();
             String sql = "INSERT INTO account values (?,?)";
@@ -21,22 +22,23 @@ public class AccountDao {
             preparedStatement.setString(2,account.getUpwd());
             int count = preparedStatement.executeUpdate();
             if (count > 0) {
-                JDBCUtils.close(connection, preparedStatement);
-                return true;
-            } else {
-                JDBCUtils.close(connection, preparedStatement);
-                return false;
+                result = true;
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally{
+            JDBCUtils.close(connection, preparedStatement);
         }
-        return false;
+
+        return result;
     }
 
     //根据用户名 删除账号
     public boolean deleteAccountByNumber(String uname){
         Connection connection= null;
         PreparedStatement preparedStatement = null;
+        boolean result = false;
+
         try {
             connection = JDBCUtils.getConncetion();
 
@@ -46,21 +48,22 @@ public class AccountDao {
             int count = preparedStatement.executeUpdate();
             if(count>0){
                 JDBCUtils.close(connection,preparedStatement);
-                return true;
-            }else {
-                JDBCUtils.close(connection,preparedStatement);
-                return false;
+                result = true;
             }
         }catch (SQLException e){
             e.printStackTrace();
+        } finally{
+            JDBCUtils.close(connection,preparedStatement);
         }
-        return false;
+        return result;
     }
 
     //根据用户名 修改密码
     public boolean updatePassword(String uname,String upwd){
         Connection connection= null;
         PreparedStatement preparedStatement = null;
+        boolean result = false;
+
         try {
             connection = JDBCUtils.getConncetion();
             String sql = "update account set upwd = ? where uname = ?";
@@ -69,16 +72,14 @@ public class AccountDao {
             preparedStatement.setString(2,uname);
             int count = preparedStatement.executeUpdate();
             if(count>0){
-                JDBCUtils.close(connection,preparedStatement);
-                return true;
-            }else {
-                JDBCUtils.close(connection,preparedStatement);
-                return false;
+                result = true;
             }
         }catch (SQLException e){
             e.printStackTrace();
+        }finally{
+            JDBCUtils.close(connection,preparedStatement);
         }
-        return false;
+        return result;
     }
 
     //登录账号
@@ -86,6 +87,8 @@ public class AccountDao {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
+        boolean result = false;
+
         try {
             connection = JDBCUtils.getConncetion();
             String sql = "SELECT * FROM account WHERE uname = ? and upwd = ?";
@@ -95,22 +98,21 @@ public class AccountDao {
             resultSet = preparedStatement.executeQuery();
 
             if (resultSet == null) { //账号或者密码错误
-                System.out.println("结果集为空!");
-                return false;
+                throw new SQLException("账号或密码不存在");
             }
             if (resultSet.next()) { //登录账号
                 String name = resultSet.getString("uname");
                 String pwd = resultSet.getString("upwd");
                 //封装
                 account = new Account(name,pwd);
-                return true;
+                result = true;
             }
         }catch (SQLException e){
             e.printStackTrace();
         }finally {
             JDBCUtils.close(connection, preparedStatement, resultSet);
         }
-        return false;
+        return result;
     }
 
     //判断账户是否存在
@@ -118,6 +120,8 @@ public class AccountDao {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
+        boolean result = false;
+
         try {
             connection = JDBCUtils.getConncetion();
             String sql = "SELECT * FROM account WHERE uname = ?";
@@ -126,18 +130,17 @@ public class AccountDao {
             resultSet = preparedStatement.executeQuery();
 
             if (resultSet == null) { //账号不存在 返回False
-                System.out.println("结果集为空!");
-                return false;
+                throw new SQLException("账号或密码不正确");
             }
             if (resultSet.next()) { //账号存在 返回True
-                return true;
+                result = true;
             }
         }catch (SQLException e){
             e.printStackTrace();
         }finally {
             JDBCUtils.close(connection, preparedStatement, resultSet);
         }
-        return false;
+        return result;
     }
 
 }
