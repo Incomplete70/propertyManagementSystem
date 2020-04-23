@@ -18,6 +18,7 @@ public class HouseHolderDao {
     public boolean addHouseHolder(HouseHolder houseHolder){
         Connection connection= null;
         PreparedStatement preparedStatement = null;
+        boolean result = false;
         try {
             connection = JDBCUtils.getConncetion();
 
@@ -27,22 +28,20 @@ public class HouseHolderDao {
             preparedStatement.setString(2, houseHolder.getHouseHoldername());
             preparedStatement.setInt(3, houseHolder.getHouseHolderId());
             int count = preparedStatement.executeUpdate();
-            if(count>0){
-                JDBCUtils.close(connection,preparedStatement);
-                return true;
-            }else {
-                JDBCUtils.close(connection,preparedStatement);
-                return false;
+            if(count>0) {
+                JDBCUtils.close(connection, preparedStatement);
+                result = true;
             }
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return false;
+        return result;
     }
         //根据户号 删除户主
     public boolean deleteHouseHolderByNumber(int number){
         Connection connection= null;
         PreparedStatement preparedStatement = null;
+        boolean result = false;
         try {
             connection = JDBCUtils.getConncetion();
 
@@ -53,21 +52,19 @@ public class HouseHolderDao {
             int count = preparedStatement.executeUpdate();
             if(count>0){
                 JDBCUtils.close(connection,preparedStatement);
-                return true;
-            }else {
-                JDBCUtils.close(connection,preparedStatement);
-                return false;
+                result = true;
             }
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return false;
+        return result;
     }
 
     //根据户号 找到待修改的住户 把这个住户改成新的HouseHolder对象
     public boolean updateHouseHolderByNumber(int number, HouseHolder houseHolder){
         Connection connection= null;
         PreparedStatement preparedStatement = null;
+        boolean result = false;
         try {
             connection = JDBCUtils.getConncetion();
 
@@ -83,15 +80,12 @@ public class HouseHolderDao {
             int count = preparedStatement.executeUpdate();
             if(count>0){
                 JDBCUtils.close(connection,preparedStatement);
-                return true;
-            }else {
-                JDBCUtils.close(connection,preparedStatement);
-                return false;
+                result = true;
             }
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return false;
+        return result;
 
     }
 
@@ -104,7 +98,7 @@ public class HouseHolderDao {
         }
     }
 
-    //查询全部学生(很多学生)
+    //查询全部户主
     public List<HouseHolder> queryAllHouseHolders(){
         List<HouseHolder> houseHolders = new ArrayList<>();
         HouseHolder houseHolder = null;
@@ -121,6 +115,7 @@ public class HouseHolderDao {
                 System.out.println("结果集为空!");
                 return null;
             }
+
             while (resultSet.next()) {
                 int houseHolderNumber = resultSet.getInt("houseHolderNumber");
                 String houseHolderName = resultSet.getString("houseHolderName");
@@ -162,6 +157,7 @@ public class HouseHolderDao {
                 System.out.println("结果集为空!");
                 return null;
             }
+
             if (resultSet.next()) {
                 int houseHolderNumber = resultSet.getInt("houseHolderNumber");
                 String houseHolderName = resultSet.getString("houseHolderName");
