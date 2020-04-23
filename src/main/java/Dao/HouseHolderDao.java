@@ -2,7 +2,7 @@ package Dao;
 
 
 import Entity.HouseHolder;
-import java.JDBCUtils;
+import Utils.JDBCUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

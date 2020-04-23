@@ -7,18 +7,20 @@ import Entity.Account;
 public class AccountService {
     AccountDao accountDao = new AccountDao();
 
-    //账号登录
-    public boolean login(Account account){
+
+    /*账号登录 返回int值
+    * -1:账号不存在
+    * 0:账号存在,但是密码错误
+    * 1:账号密码都正确,登陆成功
+    * */
+    public int login(Account account){
         if(accountDao.accountIsExist(account)==false){
-            //账号不存在!
-            return false;
+            return -1;
         }
         if(accountDao.loginAccount(account)==false){
-            //账号存在 但是密码错误
-            return false;
+            return 0;
         }else {
-            //登陆成功
-            return true;
+            return 1;
         }
     }
 
